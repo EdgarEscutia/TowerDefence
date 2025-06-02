@@ -13,7 +13,7 @@ public class GestorOleadas : MonoBehaviour
     public class LineaGuion
     {
         public float espera;
-        DefinicionOleada tipo;
+        public DefinicionOleada oleada;
     }
 
     [System.Serializable]
@@ -52,10 +52,7 @@ public class GestorOleadas : MonoBehaviour
             // Instancia la CANTIDAD de ENEMIGOS del BLOQUE con su RUTA
             for (int j = 0; j < oleada.bloques[i].cantidad; j++)
             {
-                Enemigo enemigo = Instantiate(
-                oleada.bloques[i].tipoEnemigos,
-                Vector3.zero,
-                Quaternion.identity);
+                Enemigo enemigo = Instantiate(oleada.bloques[i].tipoEnemigos, Vector3.zero, Quaternion.identity);
 
                 enemigo.EstablecerRuta(rutas[Random.Range(0, rutas.Length)]);
 

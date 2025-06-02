@@ -3,9 +3,10 @@ using UnityEngine.Splines;
 
 public class Enemigo : MonoBehaviour
 {
-    [SerializeField] public SplineContainer ruta;
+    public SplineContainer ruta;
     [SerializeField] float velocidad = 4f;
-    [SerializeField] float vida = 1f;
+    [SerializeField] float vida, vidaMaxima = 2f;
+    [SerializeField] private HealthBar healthBar;
 
     [SerializeField] float umbralLlegada = 1f;
 
@@ -30,6 +31,9 @@ public class Enemigo : MonoBehaviour
 
         transform.position = pathPointsCache[0];
         posicionSiguiente = pathPointsCache[indiceSiguientePosicion];
+        vida = vidaMaxima;
+        healthBar.UpdateHealthBar(vida, vidaMaxima);
+        GameManager.instance.NotificaEnemigoCreado();
 
     }
 

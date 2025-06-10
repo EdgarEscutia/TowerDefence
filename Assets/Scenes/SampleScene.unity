@@ -1596,7 +1596,7 @@ Transform:
   m_GameObject: {fileID: 1345585486}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 73.37961, y: -14.192576, z: 48.63181}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1614,7 +1614,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fbaebace1518634a9d7b9a38a6da1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guion: []
+  guion:
+    lineas:
+    - espera: 0
+      oleada: {fileID: 11400000, guid: 91c3ff8b758c7134ea3f7c545f390be4, type: 2}
+  rutasDisponibles:
+  - {fileID: 901489908}
+  - {fileID: 444745252}
+  - {fileID: 1837035721}
 --- !u!1 &1355262204
 GameObject:
   m_ObjectHideFlags: 0

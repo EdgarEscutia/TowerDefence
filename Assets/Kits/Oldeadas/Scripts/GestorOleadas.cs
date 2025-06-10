@@ -1,19 +1,14 @@
-using System;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Splines;
 
 public class GestorOleadas : MonoBehaviour
 {
-    [SerializeField] SplineContainer[] rutas;
-    [SerializeField] GuionOleadas guionOleadas;
-
     [System.Serializable]
     public class LineaGuion
     {
-        public float espera;
-        public DefinicionOleada oleada;
+        public float espera;                // Tiempo de espera antes de la oleada
+        public DefinicionOleada oleada;    // Oleada a lanzar
     }
 
     [System.Serializable]
@@ -21,44 +16,70 @@ public class GestorOleadas : MonoBehaviour
     {
         public LineaGuion[] lineas;
     }
-  
-    float contador = 0f;
-    bool enemigoCreado = false;
 
+    [Header("Guion de Oleadas")]
+    public GuionOleadas guion;
 
-    private void Start()
+    [Header("Caminos disponibles")]
+    public SplineContainer[] rutasDisponibles;
+
+    void Start()
     {
-        StartCoroutine(LeeGion());
+        StartCoroutine(LeeGuion());
     }
 
-    IEnumerator LeeGion()
+    IEnumerator LeeGuion()
     {
-        for (int i = 0; i < guionOleadas.lineas.Length; i++)
+        foreach (var linea in guion.lineas)
         {
-            
-            StartCoroutine(LanzaOleadas(guionOleadas.lineas[i].oleada));
-            yield return new WaitForSeconds(guionOleadas.lineas[i].espera);
-
+            // Esperar antes de lanzar la oleada
+            yield return new WaitForSeconds(linea.espera);
+            // Lanzar la oleada
+            yield return StartCoroutine(LanzaOleada(linea.oleada));
         }
-        GameManager.instance.NotificaUltimoEnemigoCreado();
-
     }
 
-    public IEnumerator LanzaOleadas(DefinicionOleada oleada)
+    IEnumerator LanzaOleada(DefinicionOleada oleada)
     {
-        // Pasa por todos los BLOQUES de la OLEADA
-        for (int i = 0; i < oleada.bloques.Length; i++)
+        if (oleada == null)
         {
-            // Instancia la CANTIDAD de ENEMIGOS del BLOQUE con su RUTA
-            for (int j = 0; j < oleada.bloques[i].cantidad; j++)
+            Debug.LogWarning("Oleada nula en GestorOleadas.");
+            yield break;
+        }
+
+        foreach (var bloque in oleada.bloques)
+        {
+            for (int i = 0; i < bloque.cantidad; i++)
             {
-                Enemigo enemigo = Instantiate(oleada.bloques[i].tipoEnemigos, Vector3.zero, Quaternion.identity).GetComponent<Enemigo>();
+                // Esperar el tiempo según enemigosPorSegundo
+                float esperaEntreEnemigos = 1f / bloque.enemigosPorSegundo;
+                yield return new WaitForSeconds(esperaEntreEnemigos);
 
-                enemigo.EstablecerRuta(rutas[System.Random.Range(0, rutas.Length)]);
+                if (rutasDisponibles == null || rutasDisponibles.Length == 0)
+                {
+                    Debug.LogError("No hay rutas asignadas en GestorOleadas.");
+                    yield break;
+                }
 
-                yield return new WaitForSeconds(oleada.bloques[i].tiempoEntreEnemigos);
+                // Elegir una ruta al azar
+                SplineContainer rutaElegida = rutasDisponibles[Random.Range(0, rutasDisponibles.Length)];
+
+                // Instanciar enemigo
+                GameObject enemigoGO = Instantiate(bloque.tipoEnemigos);
+
+                // Asignar la ruta al componente Enemigo
+                Enemigo enemigo = enemigoGO.GetComponent<Enemigo>();
+                if (enemigo == null)
+                {
+                    Debug.LogError("El prefab no tiene componente Enemigo.");
+                    Destroy(enemigoGO);
+                    yield break;
+                }
+
+                enemigo.ruta = rutaElegida;
+
+                // El enemigo se posicionará automáticamente en el primer punto de la ruta en su Start()
             }
         }
-
     }
 }

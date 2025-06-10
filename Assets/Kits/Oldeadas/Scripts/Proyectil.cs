@@ -1,92 +1,146 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using UnityEngine.AdaptivePerformance.VisualScripting;
 
-public partial class Proyectil : MonoBehaviour
+public class Proyectil : MonoBehaviour
 {
-    [Header("General")]
-    [SerializeField] string[] tagsAfectados;
-    [SerializeField] float tiempoMovimiento = 1f;
+    [Header("Daño")]
+    public float danyoImpactoDirecto = 0f;
+    public float radioDanyoArea = 0f;
+    public float danyoAreaEnOrigen = 0f;
+    public float danyoAreaEnBorde = 0f;
 
-    [Header("Danyo")]
-    [SerializeField] float danyoImpactoDirecto;
-    [SerializeField] float radioDanyoArea;
-    [SerializeField] float danyoAreaEnOrigen;
-    [SerializeField] float danyoAreaEnBorde;
-    
+    [Header("SubProyectiles")]
+    public int subProyectilesAGenerar = 0;
+    public float radioSubProyectiles = 0f;
+    public GameObject prefabSubProyectil;
 
+    [Header("Tags Afectados")]
+    public string[] tagsAfectados;
 
-    [Header("SubProyectil")]
-    [SerializeField] int subProyectilesAGenerar;
-    [SerializeField] float radioSubProyectiles;
-    [SerializeField] GameObject prefabSubProyectil;
-    [SerializeField] float alturaSaltoSubProyectil = 5f;
+    [Header("Debug")]
+    public Transform debugTransformPuntoFinal;
+    public bool debugTransformInit = false;
 
+    private Vector3 puntoInicial;
+    private Vector3 puntoFinal;
+    private float alturaSalto;
 
-    public void Init( Vector3 puntoInicial, Vector3 puntoFinal, float alturaSalto)
+    private bool impactoDirecto = false;
+    private Collider colliderImpactadoDirecto;
+
+    private Rigidbody rb;
+
+    private void Awake()
     {
-        transform.position = puntoInicial;
-        transform.DOJump(puntoFinal, alturaSalto, 1, tiempoMovimiento).OnComplete(() => RealizaLaDestruccion());
+        rb = GetComponent<Rigidbody>();
+        if (rb != null)
+            rb.isKinematic = true;
     }
 
+    private void OnValidate()
+    {
+        if (debugTransformInit && debugTransformPuntoFinal != null)
+        {
+            debugTransformInit = false;
+            Init(transform.position, debugTransformPuntoFinal.position, 2f);
+        }
+    }
+
+    public void Init(Vector3 puntoInicial, Vector3 puntoFinal, float alturaSalto)
+    {
+        this.puntoInicial = puntoInicial;
+        this.puntoFinal = puntoFinal;
+        this.alturaSalto = alturaSalto;
+
+        transform.position = puntoInicial;
+
+        float duracion = Vector3.Distance(puntoInicial, puntoFinal) / 5f; // velocidad arbitraria
+
+        Sequence seq = DOTween.Sequence();
+        seq.Append(transform.DOJump(puntoFinal, alturaSalto, 1, duracion).SetEase(Ease.Linear));
+        seq.OnComplete(() => {
+            TerminaRecorrido();
+        });
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<IGolpeable>()?.RecibeDanyo(danyoImpactoDirecto);
-        RealizaLaDestruccion();
+        foreach (string tag in tagsAfectados)
+        {
+            if (other.CompareTag(tag))
+            {
+                IGolpeable golpeable = other.GetComponent<IGolpeable>();
+                if (golpeable != null)
+                {
+                    golpeable.RecibeDanyo(danyoImpactoDirecto);
+                    impactoDirecto = true;
+                    colliderImpactadoDirecto = other;
+                }
+                DestruyeProyectil();
+                break;
+            }
+        }
     }
 
-    private bool ColliderEsAfectable(Collider other)
+    private void TerminaRecorrido()
     {
-        bool esAfectable = false;
-        foreach (string t in tagsAfectados)
+        DestruyeProyectil();
+    }
+
+    private void DestruyeProyectil()
+    {
+        // Daño de área
+        if (radioDanyoArea > 0f)
         {
-            if (other.CompareTag(t))
+            Collider[] colisiones = Physics.OverlapSphere(transform.position, radioDanyoArea);
+            foreach (Collider col in colisiones)
             {
-                esAfectable = true;
+                foreach (string tag in tagsAfectados)
+                {
+                    if (col.CompareTag(tag))
+                    {
+                        IGolpeable golpeable = col.GetComponent<IGolpeable>();
+                        if (golpeable != null)
+                        {
+                            float distancia = Vector3.Distance(transform.position, col.transform.position);
+                            float damage = Mathf.Lerp(danyoAreaEnOrigen, danyoAreaEnBorde, distancia / radioDanyoArea);
+                            golpeable.RecibeDanyo(damage);
+                        }
+                        break;
+                    }
+                }
             }
         }
 
-        return esAfectable;
-    }
+        // Generar subproyectiles
+        if (subProyectilesAGenerar > 0 && prefabSubProyectil != null)
+        {
+            for (int i = 0; i < subProyectilesAGenerar; i++)
+            {
+                Vector3 randomOffset = Random.insideUnitSphere * radioSubProyectiles;
+                randomOffset.y = Mathf.Abs(randomOffset.y); // que no caiga por debajo del suelo
 
-    void RealizaLaDestruccion()
-    {
+                Vector3 posSpawn = transform.position + randomOffset;
+
+                GameObject subProy = Instantiate(prefabSubProyectil, posSpawn, Quaternion.identity);
+
+                Proyectil subProyComp = subProy.GetComponent<Proyectil>();
+                if (subProyComp != null)
+                {
+                    subProyComp.Init(posSpawn, posSpawn, 0.2f);
+
+                    if (impactoDirecto && colliderImpactadoDirecto != null)
+                    {
+                        Collider colSub = subProy.GetComponent<Collider>();
+                        if (colSub != null)
+                            Physics.IgnoreCollision(colSub, colliderImpactadoDirecto);
+                    }
+                }
+            }
+        }
+
         Destroy(gameObject);
-
-        DanyaPorDestruccion();
-        GeneraSubProyectiles();
-    }
-
-    private void DanyaPorDestruccion()
-    {
-        Collider[] objectosCercanos = Physics.OverlapSphere(transform.position, radioDanyoArea);
-        foreach (Collider c in objectosCercanos)
-        {
-            if (ColliderEsAfectable(c))
-            {
-                float distanciaAlCentro = Vector3.Distance(c.transform.position, transform.position);
-                float t = distanciaAlCentro / radioDanyoArea;
-
-                float danyo = Mathf.Lerp(danyoAreaEnOrigen, danyoAreaEnBorde, Mathf.Clamp01(t));
-
-                c.GetComponent<IGolpeable>().RecibeDanyo(danyo);
-            }
-        }
-    }
-
-    void GeneraSubProyectiles()
-    {
-        for (int i = 0; i < subProyectilesAGenerar; i++)
-        {
-            Vector2 randomPositionXY = Random.insideUnitCircle * radioSubProyectiles;
-            Vector3 randomPosition = new Vector3(randomPositionXY.x, 0f, randomPositionXY.y);
-            randomPosition *= radioSubProyectiles;
-            randomPosition += transform.position;
-
-            GameObject newProyectil = Instantiate(prefabSubProyectil);
-            newProyectil.transform.position = transform.position;
-            prefabSubProyectil.GetComponent<Proyectil>().Init(transform.position, randomPosition, alturaSaltoSubProyectil);
-        }
     }
 }

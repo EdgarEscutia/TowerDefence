@@ -7,14 +7,14 @@ public class GestorOleadas : MonoBehaviour
     [System.Serializable]
     public class LineaGuion
     {
-        public float espera;                // Tiempo de espera antes de la oleada
-        public DefinicionOleada oleada;    // Oleada a lanzar
+        public float espera;                 
+        public DefinicionOleada oleada;
     }
 
     [System.Serializable]
     public class GuionOleadas
     {
-        public LineaGuion[] lineas;
+        public LineaGuion[] lineas;          
     }
 
     [Header("Guion de Oleadas")]
@@ -32,9 +32,7 @@ public class GestorOleadas : MonoBehaviour
     {
         foreach (var linea in guion.lineas)
         {
-            // Esperar antes de lanzar la oleada
             yield return new WaitForSeconds(linea.espera);
-            // Lanzar la oleada
             yield return StartCoroutine(LanzaOleada(linea.oleada));
         }
     }
@@ -51,7 +49,6 @@ public class GestorOleadas : MonoBehaviour
         {
             for (int i = 0; i < bloque.cantidad; i++)
             {
-                // Esperar el tiempo según enemigosPorSegundo
                 float esperaEntreEnemigos = 1f / bloque.enemigosPorSegundo;
                 yield return new WaitForSeconds(esperaEntreEnemigos);
 
@@ -61,24 +58,26 @@ public class GestorOleadas : MonoBehaviour
                     yield break;
                 }
 
-                // Elegir una ruta al azar
+                // Ruta aleatoria
                 SplineContainer rutaElegida = rutasDisponibles[Random.Range(0, rutasDisponibles.Length)];
 
                 // Instanciar enemigo
                 GameObject enemigoGO = Instantiate(bloque.tipoEnemigos);
 
-                // Asignar la ruta al componente Enemigo
+                // Posicionar al inicio de la ruta
+                Vector3 inicioRuta = rutaElegida.Spline.EvaluatePosition(0f);
+                enemigoGO.transform.position = inicioRuta;
+
+                // Asignar ruta
                 Enemigo enemigo = enemigoGO.GetComponent<Enemigo>();
                 if (enemigo == null)
                 {
                     Debug.LogError("El prefab no tiene componente Enemigo.");
                     Destroy(enemigoGO);
-                    yield break;
+                    continue;
                 }
 
                 enemigo.ruta = rutaElegida;
-
-                // El enemigo se posicionará automáticamente en el primer punto de la ruta en su Start()
             }
         }
     }

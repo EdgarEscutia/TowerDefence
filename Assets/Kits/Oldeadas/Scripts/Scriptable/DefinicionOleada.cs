@@ -6,9 +6,14 @@ public class DefinicionOleada : ScriptableObject
     [System.Serializable]
     public class BloqueEnemigos
     {
-        public GameObject tipoEnemigos;     // Prefab del enemigo
-        public int cantidad;               // Número de enemigos en este bloque
-        public float enemigosPorSegundo;   // Frecuencia de aparición
+        // PREFAB DEL ENEMIGO
+        public GameObject tipoEnemigos; 
+
+         // NÚMERO DE ENEMIGOS EN ESTE BLOQUE
+        public int cantidad;
+
+        // FRECUENCIA DE APARICIÓN
+        public float enemigosPorSegundo;  
     }
 
     public BloqueEnemigos[] bloques;

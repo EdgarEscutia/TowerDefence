@@ -60,6 +60,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: radioDeteccion
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: prefabProyectil
+      value: 
+      objectReference: {fileID: 6549855748700394192, guid: 0637c21ad66add547afe45900803ddfa, type: 3}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: alturaSaltoProyectil
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: radioPerdidaObjetivo
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: tiempoEntreProyectiles
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 2711402963016013749, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
       propertyPath: m_Name
       value: EnemigoLento Variant

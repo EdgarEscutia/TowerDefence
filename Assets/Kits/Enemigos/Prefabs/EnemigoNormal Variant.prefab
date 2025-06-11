@@ -48,6 +48,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: prefabProyectil
+      value: 
+      objectReference: {fileID: 3184500121951184775, guid: 9a91e8388e40a9344bb9d23620f89027, type: 3}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: alturaSaltoProyectil
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: radioPerdidaObjetivo
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1815155376516959181, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
+      propertyPath: tiempoEntreProyectiles
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2711402963016013749, guid: 4a414f936e299bb46b2f1d367014dca3, type: 3}
       propertyPath: m_Name
       value: EnemigoNormal Variant

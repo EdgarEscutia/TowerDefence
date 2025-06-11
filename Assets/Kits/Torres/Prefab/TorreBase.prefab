@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7562364829795446688}
+  - component: {fileID: 452903492357411086}
+  - component: {fileID: 8731000468514597162}
   m_Layer: 0
   m_Name: TorreBase
   m_TagString: Untagged
@@ -33,6 +35,39 @@ Transform:
   - {fileID: 8235890710343639300}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &452903492357411086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490838870314499211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0dd56b304d492fe4b8515b07b2e63832, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resistencia: 10
+--- !u!114 &8731000468514597162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490838870314499211}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee7fb1dc90dd0be41824d74218c548df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radioDeteccion: 5
+  radioPerdidaObjetivo: 5
+  tagsObjetivos:
+  - Enemigo
+  prefabProyectil: {fileID: 973278630277531131, guid: 7e932f5d710045b49972cc82581f4800, type: 3}
+  tiempoEntreProyectiles: 0.5
+  origenProyectil: {fileID: 8235890710343639300}
+  alturaSaltoProyectil: 1
 --- !u!1 &3267781479279952107
 GameObject:
   m_ObjectHideFlags: 0

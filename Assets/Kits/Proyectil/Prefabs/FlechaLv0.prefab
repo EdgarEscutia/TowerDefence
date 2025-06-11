@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: danyoImpactoDirecto
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5737182521630301193, guid: 04631a81e104c4e45a8acfa120bd6790, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 8ced70e31560eae4a9818828849f7ab5, type: 2}
     - target: {fileID: 7494992734227878160, guid: 04631a81e104c4e45a8acfa120bd6790, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

@@ -60,6 +60,14 @@ PrefabInstance:
       propertyPath: danyoImpactoDirecto
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6994117648131029159, guid: 4b44672ef61dc28429225e76ed819858, type: 3}
+      propertyPath: tagsAfectados.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6994117648131029159, guid: 4b44672ef61dc28429225e76ed819858, type: 3}
+      propertyPath: 'tagsAfectados.Array.data[0]'
+      value: Torre
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

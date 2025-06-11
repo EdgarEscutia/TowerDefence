@@ -7,7 +7,7 @@ public class Enemigo : MonoBehaviour, IGolpeable
 {
     [Header("Ajustes Modificables")]
     public SplineContainer ruta;
-    public float velocidad = 4f; // metros por segundo
+    public float velocidad = 4f;
     public float vida = 2f;
     public float distanciaEntrePuntos = 0.5f;
 
@@ -24,6 +24,7 @@ public class Enemigo : MonoBehaviour, IGolpeable
         }
 
         CachearRuta();
+
         if (pathPoints.Length < 2)
         {
             Debug.LogError("La ruta tiene muy pocos puntos.");
@@ -31,6 +32,7 @@ public class Enemigo : MonoBehaviour, IGolpeable
         }
 
         transform.position = pathPoints[0];
+
         currentPointIndex = 1;
         nextPoint = pathPoints[currentPointIndex];
     }
@@ -50,7 +52,6 @@ public class Enemigo : MonoBehaviour, IGolpeable
 
             if (currentPointIndex >= pathPoints.Length)
             {
-                // Fin del camino
                 Destroy(gameObject);
             }
             else
@@ -78,7 +79,6 @@ public class Enemigo : MonoBehaviour, IGolpeable
         }
 
         int numPoints = Mathf.CeilToInt(totalLength / distanciaEntrePuntos);
-
         List<Vector3> points = new List<Vector3>();
         for (int i = 0; i <= numPoints; i++)
         {
@@ -91,10 +91,11 @@ public class Enemigo : MonoBehaviour, IGolpeable
         pathPoints = points.ToArray();
     }
 
-    // Implementación de la interfaz IGolpeable
     public void RecibeDanyo(float cantidad)
     {
         vida -= cantidad;
+        Debug.Log($"Enemigo recibe daño: {cantidad}, vida restante: {vida}");
+
         if (vida <= 0)
         {
             Destroy(gameObject);

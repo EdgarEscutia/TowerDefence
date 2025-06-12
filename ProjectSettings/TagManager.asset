@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Enemigo
   - Torre
+  - Cimiento
   layers:
   - Default
   - TransparentFX

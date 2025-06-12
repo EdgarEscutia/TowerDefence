@@ -392,8 +392,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: -0.000000014901161, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 25.9, y: 0.7, z: 67.71}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1760,7 +1760,7 @@ Transform:
   m_GameObject: {fileID: 1600851554}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 61.599422, y: -23.561222, z: 39.97056}
+  m_LocalPosition: {x: 61.599422, y: -22.2, z: 39.97056}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1776,6 +1776,7 @@ Transform:
   - {fileID: 1144238297}
   - {fileID: 612093100}
   - {fileID: 1938898775}
+  - {fileID: 1922992218}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1624521668
@@ -2233,6 +2234,72 @@ MonoBehaviour:
       m_Data: []
   m_Knots:
     m_KnotsLink: []
+--- !u!1001 &1922992217
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 1600851555}
+    m_Modifications:
+    - target: {fileID: 4517749810056738739, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_Name
+      value: Cimiento
+      objectReference: {fileID: 0}
+    - target: {fileID: 5013082243517070738, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -35.621284
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 22.249435
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 30.237358
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+--- !u!4 &1922992218 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+  m_PrefabInstance: {fileID: 1922992217}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1938898774
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2369,13 +2436,17 @@ PrefabInstance:
       propertyPath: m_Name
       value: Cimiento
       objectReference: {fileID: 0}
+    - target: {fileID: 4517749810056738739, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -15.399422
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 28.161222
+      value: 28.553
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.z

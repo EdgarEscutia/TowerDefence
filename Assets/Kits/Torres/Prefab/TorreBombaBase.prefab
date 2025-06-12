@@ -16,6 +16,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: TorreBombaBase
       objectReference: {fileID: 0}
+    - target: {fileID: 1490838870314499211, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
+      propertyPath: m_TagString
+      value: Torre
+      objectReference: {fileID: 0}
     - target: {fileID: 2110182479329316124, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 

@@ -33,23 +33,26 @@ public class MenuDesplegable : MonoBehaviour
 
     public void Mostrar()
     {
-        if (cimiento == null) return;
-
         if (!cimiento.HayTorreConstruida())
         {
-            panelTorres.SetActive(true);
+            panelTorres.gameObject.SetActive(true);
         }
-        else
+        
+        else if (cimiento.TipoTorre() == "TorreArqueros")
         {
-            string tipo = cimiento.TipoTorre();
-
-            if (tipo == "TorreArqueros")
-                panelTorreArquero.SetActive(true);
-            else if (tipo == "TorreMagica")
-                panelTorreMagica.SetActive(true);
-            else if (tipo == "TorreCanyones")
-                panelTorreCanyones.SetActive(true);
+            panelTorreArquero.gameObject.SetActive(true);
+        }  
+        
+        else if (cimiento.TipoTorre() == "TorreMagica")
+        {
+            panelTorreMagica.gameObject.SetActive(true);
+        }   
+        
+        else if (cimiento.TipoTorre() == "TorreCanyones")
+        {
+            panelTorreCanyones.gameObject.SetActive(true);
         }
+            
     }
 
     public void Ocultar()
@@ -59,10 +62,6 @@ public class MenuDesplegable : MonoBehaviour
         panelTorreMagica.SetActive(false);
         panelTorreCanyones.SetActive(false);
 
-        if (eventoAlOcultar != null)
-        {
-            eventoAlOcultar.Invoke();
-            eventoAlOcultar = null;
-        }
+        eventoAlOcultar?.Invoke();
     }
 }

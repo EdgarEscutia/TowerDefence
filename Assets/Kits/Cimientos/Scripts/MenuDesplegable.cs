@@ -3,28 +3,66 @@ using UnityEngine.Events;
 
 public class MenuDesplegable : MonoBehaviour
 {
-    UnityEvent eventoParaLlamarAlOcultar = null;
-
-    [SerializeField] GameObject panelTorresInicio;
+    [SerializeField] GameObject panelTorres;
     [SerializeField] GameObject panelTorreArquero;
-    [SerializeField] GameObject pantelTorreMagica;
-    [SerializeField] GameObject panelTorreCanones;
+    [SerializeField] GameObject panelTorreMagica;
+    [SerializeField] GameObject panelTorreCanyones;
 
+    private UnityEvent eventoAlOcultar;
+    private Cimientos cimiento;
 
-    public void EstableceEvento(UnityEvent nuevoEvento)
-    {eventoParaLlamarAlOcultar = nuevoEvento; }
-        
+    void Awake()
+    {
+        panelTorres.SetActive(false);
+        panelTorreArquero.SetActive(false);
+        panelTorreMagica.SetActive(false);
+        panelTorreCanyones.SetActive(false);
+
+        cimiento = GetComponentInParent<Cimientos>();
+    }
+
+    void Update()
+    {
+        transform.rotation = Camera.main.transform.rotation;
+    }
+
+    public void EstableceEvento(UnityEvent accion)
+    {
+        eventoAlOcultar = accion;
+    }
+
     public void Mostrar()
-    {gameObject.SetActive(false); }
-        
+    {
+        if (cimiento == null) return;
+
+        if (!cimiento.HayTorreConstruida())
+        {
+            panelTorres.SetActive(true);
+        }
+        else
+        {
+            string tipo = cimiento.TipoTorre();
+
+            if (tipo == "TorreArqueros")
+                panelTorreArquero.SetActive(true);
+            else if (tipo == "TorreMagica")
+                panelTorreMagica.SetActive(true);
+            else if (tipo == "TorreCanyones")
+                panelTorreCanyones.SetActive(true);
+        }
+    }
+
     public void Ocultar()
     {
-        gameObject.SetActive(false);
+        panelTorres.SetActive(false);
+        panelTorreArquero.SetActive(false);
+        panelTorreMagica.SetActive(false);
+        panelTorreCanyones.SetActive(false);
 
-        if(eventoParaLlamarAlOcultar != null)
+        if (eventoAlOcultar != null)
         {
-            eventoParaLlamarAlOcultar.Invoke();
-            eventoParaLlamarAlOcultar = null;
+            eventoAlOcultar.Invoke();
+            eventoAlOcultar = null;
         }
     }
 }

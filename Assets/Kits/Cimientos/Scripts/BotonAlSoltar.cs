@@ -1,23 +1,21 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
 public class BotonAlSoltar : MonoBehaviour
 {
     public UnityEvent accion;
-    MenuDesplegable menu;
+
+    MenuDesplegable menuDesplegable;
 
     private void Awake()
-    {menu = GetComponentInParent<MenuDesplegable>(); }
+    { menuDesplegable = GetComponentInParent<MenuDesplegable>(); }
 
-    public void EntraPuntero()
-    {
-        if(menu != null)
-        { menu.EstableceEvento(accion); }
-    }
+    public void PunteroEntra()
+    { menuDesplegable.EstableceEvento(accion); }
 
-    public void SalePuntero()
-    {
-        if(menu != null)
-        { menu.EstableceEvento(null); }
-    }
+    public void PunteroSale()
+    { menuDesplegable.EstableceEvento(null); }
+       
+    
 }

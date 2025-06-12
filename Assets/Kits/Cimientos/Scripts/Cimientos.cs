@@ -2,50 +2,87 @@ using UnityEngine;
 
 public class Cimientos : MonoBehaviour
 {
-    [Header("TORRES PREFAB")]
-    public GameObject torreArqueroPrefab;
-    public GameObject torreMagicaPrefab;
-    public GameObject torreCanonesPrefab;
+    [Header("Torres Arqueros")]
+    [SerializeField] GameObject prefabTorreArquerosLv0;
+    [SerializeField] GameObject prefabTorreArquerosLv1;
+    [SerializeField] GameObject prefabTorreArquerosLv2;
 
+    [Header("Torres Mágicas")]
+    [SerializeField] GameObject prefabTorreMagicaLv0;
+    [SerializeField] GameObject prefabTorreMagicaLv1;
+    [SerializeField] GameObject prefabTorreMagicaLv2;
 
+    [Header("Torres Cañones")]
+    [SerializeField] GameObject prefabTorreCanyonesLv0;
+    [SerializeField] GameObject prefabTorreCanyonesLv1;
+    [SerializeField] GameObject prefabTorreCanyonesLv2;
 
-    Torre torreContruida = null;
+    private Torre torreActual;
+    private string tipoTorre;
+    private GameObject objetoTorre;
 
-    public bool HayTorreContruida()
+    public void ConstruirTorreArqueros(int nivel)
     {
-        return torreContruida != null;
+        DestruirTorreActual();
+
+        if (nivel == 0)
+            objetoTorre = Instantiate(prefabTorreArquerosLv0, transform.position, Quaternion.identity);
+        else if (nivel == 1)
+            objetoTorre = Instantiate(prefabTorreArquerosLv1, transform.position, Quaternion.identity);
+        else
+            objetoTorre = Instantiate(prefabTorreArquerosLv2, transform.position, Quaternion.identity);
+
+        torreActual = objetoTorre.GetComponent<Torre>();
+        tipoTorre = "TorreArqueros";
     }
 
-    public void ContruyeTorreArqueros()
+    public void ConstruirTorreMagica(int nivel)
     {
-        if (HayTorreContruida())
-        { return; }
-            
-        GameObject nuevaTorre = Instantiate(torreArqueroPrefab, transform.position, Quaternion.identity);
-        torreContruida = nuevaTorre.GetComponent<Torre>();
+        DestruirTorreActual();
 
-        Debug.Log("TORRE ARQUEROS CONTRUIDA");
+        if (nivel == 0)
+            objetoTorre = Instantiate(prefabTorreMagicaLv0, transform.position, Quaternion.identity);
+        else if (nivel == 1)
+            objetoTorre = Instantiate(prefabTorreMagicaLv1, transform.position, Quaternion.identity);
+        else
+            objetoTorre = Instantiate(prefabTorreMagicaLv2, transform.position, Quaternion.identity);
+
+        torreActual = objetoTorre.GetComponent<Torre>();
+        tipoTorre = "TorreMagica";
     }
 
-    public void ContruyeTorreMagica()
+    public void ConstruirTorreCanyones(int nivel)
     {
-        if (HayTorreContruida())
-        { return; }
+        DestruirTorreActual();
 
-        GameObject nuevaTorre = Instantiate(torreMagicaPrefab, transform.position, Quaternion.identity);
-        torreContruida = nuevaTorre.GetComponent<Torre>();
+        if (nivel == 0)
+            objetoTorre = Instantiate(prefabTorreCanyonesLv0, transform.position, Quaternion.identity);
+        else if (nivel == 1)
+            objetoTorre = Instantiate(prefabTorreCanyonesLv1, transform.position, Quaternion.identity);
+        else
+            objetoTorre = Instantiate(prefabTorreCanyonesLv2, transform.position, Quaternion.identity);
 
-        Debug.Log("TORRE MAGICA CONTRUIDA");
+        torreActual = objetoTorre.GetComponent<Torre>();
+        tipoTorre = "TorreCanyones";
     }
 
-    public void ContruyeTorreCoñones()
+    public void DestruirTorreActual()
     {
-        if (HayTorreContruida())
-        { return; }
+        if (torreActual != null)
+        {
+            Destroy(torreActual.gameObject);
+            torreActual = null;
+        }
+    }
 
-        GameObject nuevaTorre = Instantiate(torreMagicaPrefab, transform.position, Quaternion.identity);
-        torreContruida = nuevaTorre.GetComponent<Torre>();
+    public bool HayTorreConstruida()
+    {
+        return torreActual != null;
+    }
 
-        Debug.Log("TORRE CAÑON CONTRUIDA");
+    public string TipoTorre()
+    {
+        return tipoTorre;
     }
 }
+

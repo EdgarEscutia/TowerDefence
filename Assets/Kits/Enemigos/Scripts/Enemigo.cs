@@ -15,6 +15,11 @@ public class Enemigo : MonoBehaviour, IGolpeable
     private int currentPointIndex = 0;
     private Vector3 nextPoint;
 
+    public int vidaMaxima;
+
+    public GameObject barraVidaPrefab;
+    private GameObject barraVidaUI;
+
     void Start()
     {
         if (ruta == null)
@@ -22,6 +27,9 @@ public class Enemigo : MonoBehaviour, IGolpeable
             Debug.LogError("Ruta no asignada al enemigo.");
             return;
         }
+        
+            vida = vidaMaxima;
+        
 
         CachearRuta();
 
@@ -35,6 +43,15 @@ public class Enemigo : MonoBehaviour, IGolpeable
 
         currentPointIndex = 1;
         nextPoint = pathPoints[currentPointIndex];
+
+
+        //HP
+        if (barraVidaPrefab != null)
+        {
+            barraVidaUI = Instantiate(barraVidaPrefab, transform.position + Vector3.up * 2, Quaternion.identity);
+            barraVidaUI.transform.SetParent(null); // No lo pegues al enemigo directamente
+            barraVidaUI.GetComponent<BarraVida>().enemigo = this;
+        }
     }
 
     void Update()
@@ -59,6 +76,12 @@ public class Enemigo : MonoBehaviour, IGolpeable
                 nextPoint = pathPoints[currentPointIndex];
             }
         }
+
+
+        //BARRA HP
+        if (barraVidaUI != null)
+        { barraVidaUI.transform.position = transform.position + Vector3.up * 2; }
+            
     }
 
     void CachearRuta()
@@ -98,6 +121,11 @@ public class Enemigo : MonoBehaviour, IGolpeable
 
         if (vida <= 0)
         {
+            if (barraVidaUI != null)
+            {
+                Destroy(barraVidaUI);
+            }
+
             Destroy(gameObject);
         }
     }

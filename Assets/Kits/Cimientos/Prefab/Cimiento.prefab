@@ -305,6 +305,10 @@ PrefabInstance:
       propertyPath: accion.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 5668650623409201340}
+    - target: {fileID: 2091463787753118708, guid: fbf21e3a92388064cbb9ca1990eae1e9, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 157.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4528126746395738114, guid: fbf21e3a92388064cbb9ca1990eae1e9, type: 3}
       propertyPath: m_Name
       value: Panel_Torre_Arqueras

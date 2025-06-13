@@ -1,5 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
+using TMPro;
 
 public class EconomiaJuego : MonoBehaviour
 {
@@ -8,13 +8,14 @@ public class EconomiaJuego : MonoBehaviour
     public int dineroInicial = 500;
     public int dineroActual = 0;
 
-    public Text textoDinero;
+    public TMP_Text textoDinero;
 
     private void Awake()
     {
         if (instancia == null)
         {
             instancia = this;
+            DontDestroyOnLoad(gameObject);
         }
         else
         {

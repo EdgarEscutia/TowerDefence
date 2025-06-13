@@ -79,7 +79,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2711402963016013749}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -88,7 +88,7 @@ Transform:
   - {fileID: 2741661533853607408}
   - {fileID: 678000066376094778}
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!114 &2925778065464637055
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -105,8 +105,7 @@ MonoBehaviour:
   velocidad: 6
   vida: 1
   distanciaEntrePuntos: 0.5
-  vidaMaxima: 0
-  barraVidaPrefab: {fileID: 1176041124173910013}
+  recompensa: 50
 --- !u!114 &3512964328231881941
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -182,14 +181,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee7fb1dc90dd0be41824d74218c548df, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  radioDeteccion: 5
+  radioDeteccion: 15
   radioPerdidaObjetivo: 0
   tagsObjetivos:
   - Torre
   prefabProyectil: {fileID: 6164024397569102306, guid: 4b44672ef61dc28429225e76ed819858, type: 3}
-  tiempoEntreProyectiles: 1
+  tiempoEntreProyectiles: 0.3
   origenProyectil: {fileID: 2741661533853607408}
-  alturaSaltoProyectil: 0
+  alturaSaltoProyectil: 1
 --- !u!1 &5649597571618824114
 GameObject:
   m_ObjectHideFlags: 0
@@ -324,6 +323,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: CanvasVida
       objectReference: {fileID: 0}
+    - target: {fileID: 4711944342003907374, guid: 36f7963ed4291e3418e05b1e06a7e158, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6367718471159455977, guid: 36f7963ed4291e3418e05b1e06a7e158, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -412,10 +415,5 @@ PrefabInstance:
 --- !u!224 &678000066376094778 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6367718471159455977, guid: 36f7963ed4291e3418e05b1e06a7e158, type: 3}
-  m_PrefabInstance: {fileID: 5851885939553400019}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1176041124173910013 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4711944342003907374, guid: 36f7963ed4291e3418e05b1e06a7e158, type: 3}
   m_PrefabInstance: {fileID: 5851885939553400019}
   m_PrefabAsset: {fileID: 0}

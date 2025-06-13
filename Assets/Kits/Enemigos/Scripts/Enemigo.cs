@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Splines;
 using System.Collections.Generic;
+using DG.Tweening;
 
 [RequireComponent(typeof(SplineContainer))]
 public class Enemigo : MonoBehaviour, IGolpeable
@@ -16,6 +17,10 @@ public class Enemigo : MonoBehaviour, IGolpeable
     private Vector3 nextPoint;
 
     public int recompensa = 50;
+
+    //Condicion final partida
+    private Tween movimiento;
+
     void Start()
     {
         if (ruta == null)
@@ -39,17 +44,19 @@ public class Enemigo : MonoBehaviour, IGolpeable
         currentPointIndex = 1;
         nextPoint = pathPoints[currentPointIndex];
 
-
-
     }
 
     void Update()
     {
+
         if (pathPoints == null || currentPointIndex >= pathPoints.Length)
             return;
 
         Vector3 direction = (nextPoint - transform.position).normalized;
         transform.position += direction * velocidad * Time.deltaTime;
+
+        if (direction != Vector3.zero)
+            transform.rotation = Quaternion.LookRotation(direction);
 
         float distance = Vector3.Distance(transform.position, nextPoint);
         if (distance < 0.1f)

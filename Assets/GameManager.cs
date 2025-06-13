@@ -1,58 +1,86 @@
-using UnityEngine;
 using System.Collections;
 using TMPro;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager instance { get; private set; }
+    // Singleton instance
+    public static GameManager Instance { get; private set; }
 
-    [Header("Estadisticas")]
-    [SerializeField] private float resistencia;
-    [SerializeField] TMP_Text textoVidas;
-    [SerializeField] private GameObject derrotaCanvas;
-    [SerializeField] private GameObject victoriaCanvas;
+    [Header("UI Elements")]
+    [SerializeField] private TMP_Text resistenciaText;
+    [SerializeField] private GameObject derrotaPanel;
+    [SerializeField] private GameObject victoriaPanel;
 
-    float cantidadDeEnemigos;
-    bool ultimoEnemigoCreado = false;
+    [Header("Game Settings")]
+    [SerializeField] private float vida = 10f;
+
+    private int enemigosActivos = 0;
+    private bool ultimoEnemigoSpawned = false;
 
     private void Awake()
     {
-        if (instance == null)
-        { 
-            //Destroy
-            if(instance != null && instance != this)
-            {Destroy(gameObject); return;}
-
-            instance = this;
-            DontDestroyOnLoad(gameObject);
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
         }
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
-        if(resistencia <= 0)
-        { StartCoroutine(FinalPartida(false));}
-           
-        if(cantidadDeEnemigos <= 0 && ultimoEnemigoCreado)
-        { StartCoroutine(FinalPartida(true)); }
-
-        textoVidas.text = $"Vidas: {resistencia}";
+        ActualizarEstadoJuego();
+        ActualizarUI();
     }
 
-    public void NotificaEnemigoCreado() { cantidadDeEnemigos++; }
-    public void NotificaEnemigoDestruido() { cantidadDeEnemigos--; }
-    public void NotificaEnemigoLlegaAlFinal() { resistencia++; }
-    public void NotificaUltimoEnemigoCreado() { ultimoEnemigoCreado = true; }
-
-    IEnumerator FinalPartida(bool victory)
+    private void ActualizarEstadoJuego()
     {
-        if (victory)
-        { victoriaCanvas.SetActive(true); }
+        if (vida <= 0)
+        {
+            StartCoroutine(TerminarPartida(false));
+        }
+        else if (enemigosActivos <= 0 && ultimoEnemigoSpawned)
+        {
+            StartCoroutine(TerminarPartida(true));
+        }
+    }
 
-        else { victoriaCanvas.SetActive(false); }
+    private void ActualizarUI()
+    {
+        resistenciaText.text = $"HP: {vida}";
+    }
 
-        yield return new WaitForSeconds(2f);
+    public void EnemigoCreado()
+    {
+        enemigosActivos++;
+    }
+
+    public void EnemigoDestruido()
+    {
+        enemigosActivos--;
+    }
+
+    public void EnemigoLlegoAlFinal()
+    {
+        vida--;
+    }
+
+    public void UltimoEnemigoSpawned()
+    {
+        ultimoEnemigoSpawned = true;
+    }
+
+    private IEnumerator TerminarPartida(bool victoria)
+    {
+        if (victoria)
+            victoriaPanel.SetActive(true);
+        else
+            derrotaPanel.SetActive(true);
+
+        yield return new WaitForSeconds(5f);
 
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }

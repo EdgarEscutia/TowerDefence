@@ -28,11 +28,22 @@ public class Cimientos : MonoBehaviour
 
     public void ConstruirTorreArqueros(int nivel)
     {
+
+        int costo = 50;
+
+        if (!EconomiaJuego.instancia.PuedePagar(costo))
+        {
+            Debug.Log("NO TIENES DINERO PARA LA TORRE");
+            return;
+        }
+
+        EconomiaJuego.instancia.Pagar(costo);
+
         DestruirTorreActual();
 
         if (nivel == 0)
-        { }
-            objetoTorre = Instantiate(prefabTorreArquerosLv0, transform.position, Quaternion.identity);
+        { objetoTorre = Instantiate(prefabTorreArquerosLv0, transform.position, Quaternion.identity); }
+           
         else if (nivel == 1)
             objetoTorre = Instantiate(prefabTorreArquerosLv1, transform.position, Quaternion.identity);
         else
@@ -44,6 +55,16 @@ public class Cimientos : MonoBehaviour
 
     public void ConstruirTorreMagica(int nivel)
     {
+        int costo = 50;
+
+        if (!EconomiaJuego.instancia.PuedePagar(costo))
+        {
+            Debug.Log("NO TIENES DINERO PARA LA TORRE");
+            return;
+        }
+
+        EconomiaJuego.instancia.Pagar(costo);
+
         DestruirTorreActual();
 
         if (nivel == 0)
@@ -59,6 +80,15 @@ public class Cimientos : MonoBehaviour
 
     public void ConstruirTorreCanyones(int nivel)
     {
+
+        int costo = 50;
+
+        if (!EconomiaJuego.instancia.PuedePagar(costo))
+        {
+            Debug.Log("NO TIENES DINERO PARA LA TORRE");
+            return;
+        }
+
         DestruirTorreActual();
 
         if (nivel == 0)
@@ -74,6 +104,14 @@ public class Cimientos : MonoBehaviour
 
     public void ConstruirTorreBufo(int nivel)
     {
+        int costo = 50;
+
+        if (!EconomiaJuego.instancia.PuedePagar(costo))
+        {
+            Debug.Log("NO TIENES DINERO PARA LA TORRE");
+            return;
+        }
+
         DestruirTorreActual();
 
         if (nivel == 0)

@@ -7,6 +7,7 @@ public class MenuDesplegable : MonoBehaviour
     [SerializeField] GameObject panelTorreArquero;
     [SerializeField] GameObject panelTorreMagica;
     [SerializeField] GameObject panelTorreCanyones;
+    [SerializeField] GameObject panelTorreBufo;
 
     private UnityEvent eventoAlOcultar;
     private Cimientos cimiento;
@@ -17,6 +18,7 @@ public class MenuDesplegable : MonoBehaviour
         panelTorreArquero.SetActive(false);
         panelTorreMagica.SetActive(false);
         panelTorreCanyones.SetActive(false);
+        panelTorreBufo.SetActive(false);
 
         cimiento = GetComponentInParent<Cimientos>();
     }
@@ -52,7 +54,12 @@ public class MenuDesplegable : MonoBehaviour
         {
             panelTorreCanyones.gameObject.SetActive(true);
         }
-            
+
+        else if (cimiento.TipoTorre() == "TorreBufo")
+        {
+            panelTorreBufo.gameObject.SetActive(true);
+        }
+
     }
 
     public void Ocultar()
@@ -61,6 +68,7 @@ public class MenuDesplegable : MonoBehaviour
         panelTorreArquero.SetActive(false);
         panelTorreMagica.SetActive(false);
         panelTorreCanyones.SetActive(false);
+        panelTorreBufo.SetActive(false);
 
         eventoAlOcultar?.Invoke();
     }

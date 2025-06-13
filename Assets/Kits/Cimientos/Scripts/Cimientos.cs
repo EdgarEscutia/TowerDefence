@@ -17,6 +17,11 @@ public class Cimientos : MonoBehaviour
     [SerializeField] GameObject prefabTorreCanyonesLv1;
     [SerializeField] GameObject prefabTorreCanyonesLv2;
 
+    [Header("Torres Cañones")]
+    [SerializeField] GameObject prefabTorreBufoLv0;
+    [SerializeField] GameObject prefabTorreBufoLv1;
+    [SerializeField] GameObject prefabTorreBufoLv2;
+
     private Torre torreActual;
     private string tipoTorre;
     private GameObject objetoTorre;
@@ -64,6 +69,23 @@ public class Cimientos : MonoBehaviour
 
         torreActual = objetoTorre.GetComponent<Torre>();
         tipoTorre = "TorreCanyones";
+    }
+
+    public void ConstruirTorreBufo(int nivel)
+    {
+        DestruirTorreActual();
+
+        if (nivel == 0)
+        { objetoTorre = Instantiate(prefabTorreBufoLv0, transform.position, Quaternion.identity); }
+           
+        else if (nivel == 1)
+        { objetoTorre = Instantiate(prefabTorreBufoLv1, transform.position, Quaternion.identity); }
+            
+        else
+        { objetoTorre = Instantiate(prefabTorreBufoLv2, transform.position, Quaternion.identity); }
+
+        torreActual = objetoTorre.GetComponent<Torre>();
+        tipoTorre = "TorreBufo";
     }
 
     public void DestruirTorreActual()

@@ -31,6 +31,7 @@ public class Cimientos : MonoBehaviour
         DestruirTorreActual();
 
         if (nivel == 0)
+        { }
             objetoTorre = Instantiate(prefabTorreArquerosLv0, transform.position, Quaternion.identity);
         else if (nivel == 1)
             objetoTorre = Instantiate(prefabTorreArquerosLv1, transform.position, Quaternion.identity);
@@ -94,6 +95,8 @@ public class Cimientos : MonoBehaviour
         {
             Destroy(torreActual.gameObject);
             torreActual = null;
+            VenderTorre();
+
         }
     }
 
@@ -106,5 +109,22 @@ public class Cimientos : MonoBehaviour
     {
         return tipoTorre;
     }
+
+    //ECONOMIA
+    public void VenderTorre()
+    {
+        if (torreActual == null)
+        {
+            Debug.Log("No hay torre para vender.");
+            return;
+        }
+
+        EconomiaJuego.instancia.GanarDinero(20);
+        Debug.Log("Torre vendida. Se recuperan 20 monedas.");
+
+        DestruirTorreActual();
+        tipoTorre = null;
+    }
+
 }
 

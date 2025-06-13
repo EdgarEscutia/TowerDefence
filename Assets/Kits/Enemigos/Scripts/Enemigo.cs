@@ -15,7 +15,7 @@ public class Enemigo : MonoBehaviour, IGolpeable
     private int currentPointIndex = 0;
     private Vector3 nextPoint;
 
-
+    public int recompensa = 50;
     void Start()
     {
         if (ruta == null)
@@ -108,6 +108,9 @@ public class Enemigo : MonoBehaviour, IGolpeable
         if (vida <= 0)
         {
 
+            Destroy(gameObject);
+
+            EconomiaJuego.instancia.GanarDinero(recompensa);
             Destroy(gameObject);
         }
     }

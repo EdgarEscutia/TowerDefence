@@ -48,6 +48,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4197774148057372357, guid: 5d08ed1aa0be8114583ac83d9c27a919, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6330730666470359908, guid: 5d08ed1aa0be8114583ac83d9c27a919, type: 3}
       propertyPath: m_Name
       value: TorreBufoLv0

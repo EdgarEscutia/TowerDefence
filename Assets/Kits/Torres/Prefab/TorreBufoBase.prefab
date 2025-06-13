@@ -12,10 +12,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: TorreBufoBase
       objectReference: {fileID: 0}
-    - target: {fileID: 2110182479329316124, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: fd5bb15ff01286b4f961b2bb579c1550, type: 2}
     - target: {fileID: 7562364829795446688, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -55,6 +51,14 @@ PrefabInstance:
     - target: {fileID: 7562364829795446688, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875250834224884160, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7875250834224884160, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
+      propertyPath: radioDeBuffo
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8731000468514597162, guid: 4514378d63288974ca3c56b98a08f255, type: 3}
       propertyPath: m_Enabled

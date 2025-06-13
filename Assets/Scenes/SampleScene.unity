@@ -392,13 +392,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.42523903, y: -0, z: -0, w: 0.90508115}
-  m_LocalPosition: {x: 39.46, y: 5.95, z: 66.08}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 50.332, y: 0, z: 0}
+  m_Father: {fileID: 738392640}
+  m_LocalEulerAnglesHint: {x: 50.332, y: 210, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -916,6 +916,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &738392639
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 738392640}
+  - component: {fileID: 738392641}
+  m_Layer: 0
+  m_Name: Camara
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &738392640
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738392639}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.11005857, y: 0.874242, z: -0.4107497, w: -0.23424931}
+  m_LocalPosition: {x: 77.1, y: 9.5, z: 35.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 330585546}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &738392641
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 738392639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6cdc3ee2dc80e144a6a0176a31de481, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocidad: 10
+  bordePantalla: 10
+  limitesX: {x: -50, y: 50}
+  limitesZ: {x: -50, y: 50}
+  velocidadZoom: 20
+  alturaMin: 0
+  alturaMax: 1000
+  velocidadRotacion: 5
 --- !u!1001 &742801200
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2252,7 +2305,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -35.621284
+      value: 15.07
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2260,11 +2313,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 30.237358
+      value: -18.829926
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.60876286
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2272,7 +2325,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.79335225
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2284,7 +2337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2314,19 +2367,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -22.099422
+      value: 6.65
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.13
+      value: 22.67
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.25
+      value: -13.2
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.60876286
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.x
@@ -2334,7 +2387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.79335225
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalRotation.z
@@ -2346,7 +2399,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -105
       objectReference: {fileID: 0}
     - target: {fileID: 7450153704249133417, guid: fa3a5c151509f704b9ffc46184573e9d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
@@ -2551,7 +2604,7 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
-  - {fileID: 330585546}
+  - {fileID: 738392640}
   - {fileID: 539112791}
   - {fileID: 410087041}
   - {fileID: 832575519}

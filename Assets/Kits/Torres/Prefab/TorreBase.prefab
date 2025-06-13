@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7562364829795446688}
   - component: {fileID: 452903492357411086}
   - component: {fileID: 8731000468514597162}
+  - component: {fileID: 7875250834224884160}
   m_Layer: 0
   m_Name: TorreBase
   m_TagString: Torre
@@ -68,6 +69,20 @@ MonoBehaviour:
   tiempoEntreProyectiles: 0.5
   origenProyectil: {fileID: 8235890710343639300}
   alturaSaltoProyectil: 1
+--- !u!114 &7875250834224884160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490838870314499211}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ddbda910b663c841bc3bba8b02b0cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radioDeBuffo: 5
+  multiplicadorVelocidadDisparo: 0.8
 --- !u!1 &3267781479279952107
 GameObject:
   m_ObjectHideFlags: 0
@@ -196,7 +211,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 6a5911202f2e3c34ba4e400051d9a447, type: 2}
+  - {fileID: 2100000, guid: fd5bb15ff01286b4f961b2bb579c1550, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
